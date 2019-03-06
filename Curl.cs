@@ -9,8 +9,6 @@ using System.Threading;
 /// Provides CURL-like functionalities in T-SQL code.
 /// </summary>
 /// 
-
-
 public partial class Curl
 {
     
