@@ -1,7 +1,7 @@
 ﻿--This Header uses manager:manager account
 declare @header nvarchar(200) = N'Authorization: Basic ' + (select CAST('manager:manager' as varbinary(max)) FOR XML PATH(''), BINARY BASE64);
 declare @headerType nvarchar(200) = N'Content-Type: application/json';
-declare @allHeaders nvarchar(1000) = @header+'~'+@headerType;
+declare @allHeaders nvarchar(1000) = @header+'~'+@headerType; --Note that headers are separated by a tilde
 
 
 --Obviously these values need to change to match your Epicor instance
