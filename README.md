@@ -10,4 +10,4 @@ Say you wanted to Invoke a Certain API (EPICOR) from SQL
 2) Follow the attached SQL script [SqlSetup.sql](SqlSetup.sql)
 
 3) Follow the Example script [SampleEpicorRESTCall.sql](SampleEpicorRESTCall.sql) to make the call
-##Note that headers are separated via tilde when passed in from SQL
+#Note that headers are separated via tilde when passed in from SQL
