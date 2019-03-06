@@ -28,7 +28,7 @@ public partial class Curl
     }
 
     [SqlProcedure]
-    public static void Post(SqlChars H, SqlChars d, SqlChars url)
+    public static SqlChars Post(SqlChars H, SqlChars d, SqlChars url)
     {
         ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
         var client = new WebClient();
@@ -40,11 +40,11 @@ public partial class Curl
                     Uri.EscapeUriString(url.ToSqlString().Value),
                     d.ToSqlString().Value
                     );
-        SqlContext.Pipe.Send("Request is executed. " + response);
+        return new SqlChars(response.ToCharArray());
     }
 
     [SqlProcedure]
-    public static void Patch(SqlChars H, SqlChars d, SqlChars url)
+    public static SqlChars Patch(SqlChars H, SqlChars d, SqlChars url)
     {
         
         ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
@@ -58,7 +58,7 @@ public partial class Curl
                     Uri.EscapeUriString(url.ToSqlString().Value), "PATCH",
                     d.ToSqlString().Value
                     );
-        SqlContext.Pipe.Send("Request is executed. " + response);
+        return new SqlChars(response.ToCharArray());
     }
 
     [SqlProcedure]
