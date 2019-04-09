@@ -60,6 +60,24 @@ public partial class Curl
     }
 
     [SqlProcedure]
+    public static SqlChars Del(SqlChars H, SqlChars d, SqlChars url)
+    {
+
+        ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+        var client = new WebClient();
+        AddHeader(H, client);
+        if (d.IsNull)
+            throw new ArgumentException("You must specify data that will be sent to the endpoint", "@d");
+        var response =
+                client.UploadString(
+                    Uri.EscapeUriString(url.ToSqlString().Value), "DELETE",
+                    d.ToSqlString().Value
+                    );
+        return new SqlChars(response.ToCharArray());
+    }
+
+    [SqlProcedure]
     public static void PostWithRetry(SqlChars H, SqlChars d, SqlChars url)
     {
         var client = new WebClient();
